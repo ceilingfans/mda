@@ -79,32 +79,7 @@ namespace mda {
             }
         }
 
-        mda(const std::vector<size_t>& shape)
-        : d(shape.size())
-        {
-            if (d != 0)
-            {
-                std::vector<size_t>::iterator it = shape.begin();
-                s = *it;
-                children.reserve(s);
-                if (d != 1)
-                {
-                    it++;
-                }
-                for (size_t i=0; i<s; i++)
-                {
-                    children.push_back(mda<T>(it, d-1));
-                }
-                content = nullptr;
-            }
-            else
-            {
-                s = 0;
-                content = std::make_unique<T>();
-            }
-        }
-
-        mda(std::vector<size_t>&& shape)
+        mda(std::vector<size_t> shape)
         : d(shape.size())
         {
             if (d != 0)
