@@ -24,10 +24,10 @@ Multi-dimensional static array object.
 
 Empty constructor, calls empty constructor of `T` and initialized with size 0 and dim 0.
 
-### constructor function `template <typename T> mda::mda<T>::mda(std::vector<size_t>&& shape)`
-### constructor function `template <typename T> mda::mda<T>::mda(const std::vector<size_t>& shape)`
+### constructor function `template <typename T> mda::mda<T>::mda(std::vector<size_t>&& p_shape)`
+### constructor function `template <typename T> mda::mda<T>::mda(const std::vector<size_t>& p_shape)`
 
-Constructs `mda` with `shape[0]` `mda`s, each containing `shape[1]` `mda`s, etc..., constructors differing by rvalue and lvalue parameters.
+Constructs `mda` with `p_shape[0]` `mda`s, each containing `p_shape[1]` `mda`s, etc..., constructors differing by rvalue and lvalue parameters.
 
 ```C++
 #include <iostream>
@@ -76,9 +76,9 @@ Output:
 2
 ```
 
-### function `template <typename T> const mda::mda<T>& mda::mda<T>::operator[](size_t i) const`
+### function `template <typename T> const mda::mda<T>& mda::mda<T>::operator[](size_t p_i) const`
 
-Returns `i`th member `mda` by const reference. Throws `std::invalid_argument` exception if `mda` is 0-dimensional.
+Returns `p_i`th member `mda` by const reference. Throws `std::invalid_argument` exception if `mda` is 0-dimensional.
 
 ```C++
 #include <iostream>
