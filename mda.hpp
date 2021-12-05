@@ -11,20 +11,20 @@ namespace mda {
         size_t s;
         std::unique_ptr<T> content;
 
-        mda(std::vector<size_t>::iterator it, size_t p_d)
+        mda(std::vector<size_t>::iterator p_it, size_t p_d)
         : d(p_d)
         {
             if (d != 0)
             {
-                s = *it;
+                s = *p_it;
                 children.reserve(s);
                 if (d != 1)
                 {
-                    it++;
+                    p_it++;
                 }
                 for (size_t i=0; i<s; i++)
                 {
-                    children.push_back(mda<T>(it, d-1));
+                    children.push_back(mda<T>(p_it, d-1));
                 }
                 content = nullptr;
             }
@@ -79,12 +79,12 @@ namespace mda {
             }
         }
 
-        mda(std::vector<size_t> shape)
-        : d(shape.size())
+        mda(std::vector<size_t> p_shape)
+        : d(p_shape.size())
         {
             if (d != 0)
             {
-                std::vector<size_t>::iterator it = shape.begin();
+                std::vector<size_t>::iterator it = p_shape.begin();
                 s = *it;
                 children.reserve(s);
                 if (d != 1)
@@ -104,14 +104,14 @@ namespace mda {
             }
         }
 
-        const mda<T>& operator[](size_t i) const
+        const mda<T>& operator[](size_t p_i) const
         {
             if (d == 0)
             {
                 std::string outerr = "attempted subscript of mda with dim==0";
                 throw std::invalid_argument(outerr);
             }
-            return children[i];
+            return children[p_i];
         }
 
         operator T&() const
